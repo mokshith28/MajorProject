@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Camera, useCameraDevices, useCameraPermission} from 'react-native-vision-camera';
 
-const App = () => {
+function App() {
   const [isActive, setIsActive] = useState(false);
   const {hasPermission, requestPermission} = useCameraPermission();
   const devices = useCameraDevices();
@@ -25,7 +25,7 @@ const App = () => {
     );
   }
 
-  if (device == null) {
+  if (!device) {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Loading camera...</Text>
@@ -50,13 +50,11 @@ const App = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#000',
   },
   controls: {
